@@ -3,7 +3,6 @@ package com.myprojects.rest_demo.service.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import com.myprojects.rest_demo.exception.CloudVendorExceptionHandler;
 import com.myprojects.rest_demo.exception.CloudVendorNotFoundException;
 import com.myprojects.rest_demo.model.CloudVendor;
 import com.myprojects.rest_demo.repository.CloudVendorRepository;
@@ -14,9 +13,10 @@ public class CloudVendorServiceImpl implements CloudVendorService{
 
     CloudVendorRepository cloudVendorRepository;
 
-    public CloudVendorServiceImpl(CloudVendorRepository cloudVendorRepository, CloudVendorExceptionHandler cloudVendorExceptionHandler) {
+    public CloudVendorServiceImpl(CloudVendorRepository cloudVendorRepository) {
         this.cloudVendorRepository = cloudVendorRepository;
     }
+
 
     @Override
     public String createCloudVendor(CloudVendor cloudVendor) {
@@ -46,6 +46,12 @@ public class CloudVendorServiceImpl implements CloudVendorService{
     @Override
     public List<CloudVendor> getAllCloudVendors() {
         return cloudVendorRepository.findAll();
+    }
+
+    @Override
+    public List<CloudVendor> getByVendorName(String vendorName)
+    {
+        return cloudVendorRepository.findByVendorName(vendorName);
     }
 
 }
