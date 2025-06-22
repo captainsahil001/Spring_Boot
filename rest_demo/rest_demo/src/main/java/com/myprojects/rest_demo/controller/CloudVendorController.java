@@ -2,6 +2,8 @@ package com.myprojects.rest_demo.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import com.myprojects.rest_demo.model.CloudVendor;
 import com.myprojects.rest_demo.response.ResponseHandler;
@@ -39,6 +41,10 @@ public class CloudVendorController {
     }
 
     @GetMapping("{vendorId}")
+    @Operation(summary ="cloud vendor id", description="Provide cloud vendor details")
+    @ApiResponse(
+    responseCode = "200",
+    description = "Successful response with cloud vendor details")
     public ResponseEntity<Object> getCloudVendorDetails(@PathVariable("vendorId") String vendorId){
         return ResponseHandler.responseBuilder("Requested Vendor Details are given here", HttpStatus.OK, cloudVendorService.getCloudVendor(vendorId));
         

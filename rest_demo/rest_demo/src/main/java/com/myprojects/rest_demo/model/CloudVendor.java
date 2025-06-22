@@ -1,13 +1,16 @@
 package com.myprojects.rest_demo.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="cloud_vendor_info")
+@Schema(description = "This table holds cloud vendor information.")
 public class CloudVendor {
     @Id
+    @Schema(description = "This is a CLoud Vendor Id. It shall be unique.")
     private String vendorId;
     private String vendorName;
     private String vendorAddress;
